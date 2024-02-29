@@ -15,7 +15,7 @@ class TableView extends StackedView<TableViewModel> {
     return Stack(
       children: [
         Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(18),
             child: Stack(children: [
               Container(
                   decoration: BoxDecoration(
@@ -44,7 +44,7 @@ class TableView extends StackedView<TableViewModel> {
                       }
                       return SizedBox(
                           child: Padding(
-                        padding: const EdgeInsets.all(3),
+                        padding: const EdgeInsets.all(9),
                         child: Container(
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black, width: 2),

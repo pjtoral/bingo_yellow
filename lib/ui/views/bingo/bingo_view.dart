@@ -25,7 +25,7 @@ class BingoView extends StackedView<BingoViewModel> {
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Container(
-          decoration:const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/7.png'),
               fit: BoxFit.cover,
@@ -33,7 +33,7 @@ class BingoView extends StackedView<BingoViewModel> {
           ),
           child: Column(
             children: [
-            const  SizedBox(
+              SizedBox(
                 height: 30,
               ),
               Container(
@@ -46,72 +46,42 @@ class BingoView extends StackedView<BingoViewModel> {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                               const SizedBox(
+                                SizedBox(
                                   height: 150,
                                 ),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Expanded(
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.black, width: 2),
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: Colors
-                                                  .amber, // Amber glow color// Spread of the glow
-                                              spreadRadius:
-                                                  7.0, // How much the glow extends
-                                            ),
-                                            BoxShadow(
-                                              color: Colors
-                                                  .white, // Black border color
-                                              blurRadius:
-                                                  2.0, // Spread of the border
-                                              spreadRadius:
-                                                  0.0, // Border has no spread
-                                            ),
-                                          ],
-                                        ),
-                                        child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                70, 10, 70, 10),
-                                            child: RichText(
-                                              text: TextSpan(
-                                                children: [
-                                                  for (int i = 0;
-                                                      i < 'BINGO'.length;
-                                                      i++)
-                                                    TextSpan(
-                                                      text: 'BINGO'[i],
-                                                      style: TextStyle(
-                                                        fontSize: 55,
-                                                        fontWeight:
-                                                            FontWeight.w900,
-                                                        color:
-                                                            getColorForLetter(
-                                                                i),
-                                                        shadows: [
-                                                          Shadow(
-                                                            color: Colors.black
-                                                                .withOpacity(
-                                                                    1), // Shadow color
-                                                            offset: const Offset(
-                                                                3,
-                                                                3), // Shadow offset
-                                                            blurRadius:
-                                                                0, // Shadow blur radius
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                ],
-                                              ),
-                                            )),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Colors.black, width: 2),
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors
+                                                .amber, // Amber glow color// Spread of the glow
+                                            spreadRadius:
+                                                7.0, // How much the glow extends
+                                          ),
+                                          BoxShadow(
+                                            color: Colors
+                                                .white, // Black border color
+                                            blurRadius:
+                                                2.0, // Spread of the border
+                                            spreadRadius:
+                                                0.0, // Border has no spread
+                                          ),
+                                        ],
                                       ),
+                                      child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              70, 10, 70, 10),
+                                          child: Text(
+                                            'BINGO',
+                                            style: TextStyle(fontSize: 50),
+                                          )),
                                     ),
                                   ],
                                 )
