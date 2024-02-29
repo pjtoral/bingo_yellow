@@ -7,32 +7,31 @@ class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
   @override
-Widget build(BuildContext context) {
-  return ViewModelBuilder<HomeViewModel>.reactive(
-    viewModelBuilder: () => HomeViewModel(),
-    builder: (context, viewModel, child) => Scaffold(
-      appBar: AppBar(title: const Text('BINGO')),
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('BINGO'),
-              ElevatedButton(
-                onPressed: () {
-                  _showCategoryModal(context);
-                },
-                child: const Text('Start'),
-              ),
-            ],
+  Widget build(BuildContext context) {
+    return ViewModelBuilder<HomeViewModel>.reactive(
+      viewModelBuilder: () => HomeViewModel(),
+      builder: (context, viewModel, child) => Scaffold(
+        body: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('BINGO'),
+                MaterialButton(
+                  onPressed: () {
+                    _showCategoryModal(context, viewModel); // Pass viewModel here
+                  },
+                  child: const Text('Start'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
-  void _showCategoryModal(BuildContext context) {
+  void _showCategoryModal(BuildContext context, HomeViewModel viewModel) { // Receive viewModel here
     String? selectedCategory;
 
     showDialog(
@@ -68,9 +67,9 @@ Widget build(BuildContext context) {
                       });
                     },
                   ),
-                  ElevatedButton(
+                  MaterialButton(
                     onPressed: () {
-                      
+                      viewModel.navigateToBingo();
                     },
                     child: const Text('Generate'),
                   ),
