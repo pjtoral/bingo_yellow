@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'table_viewmodel.dart';
+
 class TableView extends StackedView<TableViewModel> {
   const TableView({Key? key}) : super(key: key);
   @override
@@ -10,6 +11,16 @@ class TableView extends StackedView<TableViewModel> {
     TableViewModel viewModel,
     Widget? child,
   ) {
+    if (viewModel.checkWinCondition() && !viewModel.winDialogShown) {
+      // Future.delayed is used to wait for the build method to complete.
+      Future.delayed(Duration.zero, () {
+        if (!viewModel.winDialogShown) {
+          showWinDialog(context);
+          viewModel.winDialogShown = true;
+        }
+      });
+    }
+
     return Stack(
       children: [
         Padding(
@@ -29,8 +40,10 @@ class TableView extends StackedView<TableViewModel> {
                       crossAxisCount: 5,
                     ),
                     itemBuilder: (context, index) {
-                      int j = index ~/ 5; // Row index
-                      int i = index % 5;
+                      int col = index ~/ 5; // Row index
+                      int row = index % 5;
+                      final isCenterCell = row == 2 && col == 2;
+                      final isSelected = viewModel.selectedCells[row][col];
                       if (index == 12) {
                         return SizedBox(
                           child: Center(
@@ -40,18 +53,29 @@ class TableView extends StackedView<TableViewModel> {
                           ),
                         );
                       }
-                      return SizedBox(
+                      return InkWell(
+                          onTap: isCenterCell
+                              ? null
+                              : () => viewModel.toggleCellSelection(row, col),
                           child: Padding(
-                        padding: const EdgeInsets.all(3),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 2),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: Center(
-                            child: Text('${viewModel.numbers[i][j]}'),
-                          ),
-                        ),
-                      ));
+                            padding: const EdgeInsets.all(3),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 2),
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: isCenterCell
+                                    ? Colors.grey[300]
+                                    : isSelected
+                                        ? Colors.lightBlue
+                                        : Colors.white,
+                              ),
+                              child: Center(
+                                child:
+                                    Text('${viewModel.tableNumbers[row][col]}'),
+                              ),
+                            ),
+                          ));
                     },
                   )),
             ])),
@@ -85,9 +109,25 @@ class TableView extends StackedView<TableViewModel> {
       ],
     );
   }
+
+  void showWinDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Congratulations!'),
+          content: const Text('You win a million dollars!'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
-  TableViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      TableViewModel();
+  TableViewModel viewModelBuilder(BuildContext context) => TableViewModel();
 }

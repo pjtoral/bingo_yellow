@@ -8,7 +8,6 @@
 import 'package:bingo_yellow/ui/views/bingo/bingo_view.dart' as _i4;
 import 'package:bingo_yellow/ui/views/home/home_view.dart' as _i2;
 import 'package:bingo_yellow/ui/views/startup/startup_view.dart' as _i3;
-import 'package:bingo_yellow/ui/views/table/table_view.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
@@ -45,10 +44,6 @@ class StackedRouter extends _i1.RouterBase {
       Routes.bingoView,
       page: _i4.BingoView,
     ),
-    _i1.RouteDef(
-      Routes.tableView,
-      page: _i5.TableView,
-    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
@@ -67,12 +62,6 @@ class StackedRouter extends _i1.RouterBase {
     _i4.BingoView: (data) {
       return _i6.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.BingoView(),
-        settings: data,
-      );
-    },
-    _i5.TableView: (data) {
-      return _i6.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i5.TableView(),
         settings: data,
       );
     },
