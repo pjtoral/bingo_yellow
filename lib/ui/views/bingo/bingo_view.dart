@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:bingo_yellow/themes/theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'bingo_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/table_view.dart';
@@ -74,12 +75,39 @@ class BingoView extends StackedView<BingoViewModel> {
                                           ),
                                         ],
                                       ),
-                                      child: const Padding(
-                                          padding: EdgeInsets.fromLTRB(
+                                      child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(
                                               70, 10, 70, 10),
-                                          child: Text(
-                                            'BINGO',
-                                            style: TextStyle(fontSize: 50),
+                                          child: RichText(
+                                            text: TextSpan(
+                                              children: [
+                                                for (int i = 0;
+                                                    i < 'BINGO'.length;
+                                                    i++)
+                                                  TextSpan(
+                                                    text: 'BINGO'[i],
+                                                    style: TextStyle(
+                                                      fontSize: 55,
+                                                      fontWeight:
+                                                          FontWeight.w900,
+                                                      color:
+                                                          getColorForLetter(i),
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: Colors.black
+                                                              .withOpacity(
+                                                                  1), // Shadow color
+                                                          offset: const Offset(
+                                                              3,
+                                                              3), // Shadow offset
+                                                          blurRadius:
+                                                              0, // Shadow blur radius
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                              ],
+                                            ),
                                           )),
                                     ),
                                   ],
