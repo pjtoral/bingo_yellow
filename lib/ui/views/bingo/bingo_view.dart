@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import 'package:stacked/stacked.dart';
 import 'bingo_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/table_view.dart';
@@ -30,7 +28,7 @@ class BingoView extends StackedView<BingoViewModel> {
               Stack(
                 children: [
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 150,
                     ),
                     Column(
