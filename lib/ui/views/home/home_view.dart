@@ -36,7 +36,7 @@ class HomeView extends StackedView<HomeViewModel> {
                     verticalSpaceMedium,
                     MaterialButton(
                       color: Colors.black,
-                      onPressed: viewModel.incrementCounter,
+                      onPressed: viewModel.navigateToBingo,
                       child: Text(
                         viewModel.counterLabel,
                         style: const TextStyle(color: Colors.white),

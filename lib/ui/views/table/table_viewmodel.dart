@@ -1,6 +1,14 @@
 import 'dart:math';
 
-class TableViewModel {
+import 'package:stacked/stacked.dart';
+
+class TableViewModel extends BaseViewModel {
+  late List<List<int>> numbers;
+
+  TableViewModel() {
+    numbers = generateTableData();
+  }
+
   List<int> generateRandomNumbers(int min, int max, int count) {
     final random = Random();
     final Set<int> randomNumbers = {};
