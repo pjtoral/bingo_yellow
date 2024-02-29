@@ -11,41 +11,50 @@ class TableView extends StackedView<TableViewModel> {
     TableViewModel viewModel,
     Widget? child,
   ) {
-    return GridView.builder(
-      padding: const EdgeInsets.all(10),
-      shrinkWrap: true,
-      itemCount: 25,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 5,
-        childAspectRatio: 1.0,
-      ),
-      itemBuilder: (context, index) {
-        // Calculate row and column from index
-        final row = index ~/ 5;
-        final col = index % 5;
-        final isCenterCell = row == 2 && col == 2;
-        final isSelected = viewModel.selectedCells[row][col];
-
-        return InkWell(
-          onTap: isCenterCell ? null : () => viewModel.toggleCellSelection(row, col),
-          child: Container(
-            decoration: BoxDecoration(
-              color: isCenterCell ? Colors.grey[300] : isSelected ? Colors.blueAccent : Colors.white,
-              border: Border.all(color: Colors.black, width: 2),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(
-              child: Text(
-                isCenterCell ? 'FREE' : viewModel.tableNumbers[row][col].toString(),
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
+    return Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 2),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: GridView.builder(
+          shrinkWrap: true,
+          itemCount: 25,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5,
           ),
-        );
-      },
-    );
+          itemBuilder: (context, index) {
+            int j = index ~/ 5; // Row index
+            int i = index % 5;
+            if (index == 12) {
+              return const SizedBox(
+                child: Center(
+                  child: Text(
+                    'Free Space',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
+            }
+            return SizedBox(
+                child: Padding(
+              padding: const EdgeInsets.all(9),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 2),
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: Center(
+                  child: Text('${viewModel.numbers[i][j]}'),
+                ),
+              ),
+            ));
+          },
+        ));
   }
 
   @override
-  TableViewModel viewModelBuilder(BuildContext context) => TableViewModel();
+  TableViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      TableViewModel();
 }
