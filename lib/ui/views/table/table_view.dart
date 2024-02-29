@@ -1,58 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+
 import 'table_viewmodel.dart';
 
-class TableExample extends StatefulWidget {
-  const TableExample({Key? key}) : super(key: key);
+class TableView extends StackedView<TableViewModel> {
+  const TableView({Key? key}) : super(key: key);
 
   @override
-  State<TableExample> createState() => _TableExampleState();
-}
-
-class _TableExampleState extends State<TableExample> {
-  final viewModel = TableViewModel();
-
-  @override
-  Widget build(BuildContext context) {
-    return Table(
-      border: TableBorder.all(),
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      children: List.generate(
-        5, // 5 rows
-        (rowIndex) => TableRow(
-          children: List.generate(
-            5, // 5 columns
-            (colIndex) {
-              final value = viewModel.tableNumbers[rowIndex][colIndex];
-              final isSelected = viewModel.selectedCells[rowIndex][colIndex];
-              final isCenterCell = rowIndex == 2 && colIndex == 2;
-
-              return InkWell(
-                onTap: () {
-                  setState(() {
-                    viewModel.toggleCellSelection(rowIndex, colIndex);
-                  });
-                },
-                child: Container(
-                  height: 64,
-                  width: 64,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    border: Border.all(),
-                    color: isSelected || isCenterCell ? Colors.lightBlue.shade100 : Colors.white,
-                  ),
+  Widget builder(
+    BuildContext context,
+    TableViewModel viewModel,
+    Widget? child,
+  ) {
+    return Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 2),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: GridView.builder(
+          shrinkWrap: true,
+          itemCount: 25,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5,
+          ),
+          itemBuilder: (context, index) {
+            int j = index ~/ 5; // Row index
+            int i = index % 5;
+            if (index == 12) {
+              return const SizedBox(
+                child: Center(
                   child: Text(
-                    isCenterCell ? "FREE" : value.toString(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                    'Free Space',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               );
-            },
-          ),
-        ),
-      ),
-    );
+            }
+            return SizedBox(
+                child: Padding(
+              padding: const EdgeInsets.all(9),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 2),
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: Center(
+                  child: Text('${viewModel.numbers[i][j]}'),
+                ),
+              ),
+            ));
+          },
+        ));
   }
+
+  @override
+  TableViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      TableViewModel();
 }
