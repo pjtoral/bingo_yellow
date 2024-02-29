@@ -1,3 +1,4 @@
+import 'package:bingo_yellow/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:bingo_yellow/app/app.bottomsheets.dart';
 import 'package:bingo_yellow/app/app.dialogs.dart';
@@ -19,6 +20,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: bingoTheme,
       initialRoute: Routes.startupView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
