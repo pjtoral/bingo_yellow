@@ -27,12 +27,10 @@ class TableView extends StackedView<TableViewModel> {
             int j = index ~/ 5; // Row index
             int i = index % 5;
             if (index == 12) {
-              return const SizedBox(
+              return SizedBox(
                 child: Center(
-                  child: Text(
-                    'Free Space',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                  child: Image.asset(
+                    'assets/4.png',
                   ),
                 ),
               );
