@@ -1,10 +1,10 @@
+import 'package:bingo_yellow/themes/theme.dart';
 import 'package:bingo_yellow/ui/views/table/table_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/winningcobination.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'info_alert_dialog_model.dart';
-
 
 class InfoAlertDialog extends StatelessWidget {
   final DialogRequest request;
@@ -27,48 +27,49 @@ class InfoAlertDialog extends StatelessWidget {
   Widget _buildDialog(BuildContext context, InfoAlertDialogModel viewModel) {
     String? selectedCategory;
 
-      return AlertDialog(
-        title: const Text('Select Bingo Category'),
-        content: StatefulBuilder(
-          builder: (BuildContext context, StateSetter setState) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                DropdownButton<String>(
-                  hint: const Text('Select Bingo Category'),
-                  value: selectedCategory,
-                  items: [
-                    'Black out',
-                    'X',
-                    'Cross',
-                    'L',
-                    'Corners',
-                    'Line Vertical',
-                    'Line Horizontal',
-                  ].map((String category) {
-                    return DropdownMenuItem<String>(
-                      value: category,
-                      child: Text(category),
-                    );
-                  }).toList(),
-                  onChanged: (String? category) {
-                    setState(() {
-                      selectedCategory = category;
-                    });
-                  },
-                ),
-              MaterialButton(
-  onPressed: () {
-   TableViewModel.selectedCategory = selectedCategory;
-    viewModel.navigateToBingo();
-  },
-  child: const Text('Generate'),
-),
-              ],
-            );
-          },
-        ),
-      );
+    return AlertDialog(
+      title: const Text('Select Bingo Category'),
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              DropdownButton<String>(
+                hint: const Text('Select Bingo Category'),
+                value: selectedCategory,
+                items: [
+                  'Black out',
+                  'X',
+                  'Cross',
+                  'L',
+                  'Corners',
+                  'Line Vertical',
+                  'Line Horizontal',
+                ].map((String category) {
+                  return DropdownMenuItem<String>(
+                    value: category,
+                    child: Text(category),
+                  );
+                }).toList(),
+                onChanged: (String? category) {
+                  setState(() {
+                    selectedCategory = category;
+                  });
+                },
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  TableViewModel.selectedCategory = selectedCategory;
+                  viewModel.navigateToBingo();
+                },
+                child:
+                    Text('Generate', style: bingoTheme.textTheme.displaySmall),
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 }
-

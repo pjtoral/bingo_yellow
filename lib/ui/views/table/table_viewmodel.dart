@@ -4,14 +4,12 @@ import 'package:stacked/stacked.dart';
 class TableViewModel extends BaseViewModel {
   late List<List<int>> tableNumbers;
   late List<List<bool>> selectedCells;
-  static late String?
-      selectedCategory; // Added a property to store the selected category
+  static String? selectedCategory;
   bool winDialogShown = false;
 
   TableViewModel() {
     _initializeTable();
   }
-
   void _initializeTable() {
     tableNumbers = List.generate(5, (_) => List.filled(5, 0));
     selectedCells = List.generate(5, (_) => List.filled(5, false));
@@ -21,7 +19,6 @@ class TableViewModel extends BaseViewModel {
         _generateRandomNumbers(31, 45, 4); // Adjusted for the free space
     final List<int> fourthColumnNumbers = _generateRandomNumbers(46, 60, 5);
     final List<int> fifthColumnNumbers = _generateRandomNumbers(61, 75, 5);
-
     for (int i = 0; i < 5; i++) {
       tableNumbers[i][0] = firstColumnNumbers[i];
       tableNumbers[i][1] = secondColumnNumbers[i];
@@ -82,8 +79,6 @@ class TableViewModel extends BaseViewModel {
     return handleCategorySelection();
   }
 
- 
-
   bool blackoutWinCondition() {
     // Check if all non-free cells are selected
     for (int i = 0; i < 5; i++) {
@@ -98,7 +93,7 @@ class TableViewModel extends BaseViewModel {
     return true;
   }
 
-   bool crossWinCondition() {
+  bool crossWinCondition() {
     if (selectedCells[0][2] &&
         selectedCells[1][2] &&
         selectedCells[2][0] &&
@@ -204,8 +199,6 @@ class TableViewModel extends BaseViewModel {
     }
     return false;
   }
-
-  
 
   void resetWinDialogShown() {
     winDialogShown = false;
