@@ -22,6 +22,7 @@ Color getColorForLetter(int index) {
   }
 }
 
+//Text Theme
 TextTheme title = TextTheme(
   displayLarge: TextStyle(
     fontSize: 50,
