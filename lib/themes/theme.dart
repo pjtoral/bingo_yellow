@@ -5,6 +5,7 @@ ThemeData bingoTheme = ThemeData(
   buttonTheme: buttons,
   elevatedButtonTheme: elevateBTN,
 );
+
 Color getColorForLetter(int index) {
   switch (index) {
     case 0:
