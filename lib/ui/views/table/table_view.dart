@@ -14,7 +14,6 @@ class TableView extends StackedView<TableViewModel> {
     int winConditionType = 1;
     if (viewModel.checkWinCondition(winConditionType) &&
         !viewModel.winDialogShown) {
-      // Future.delayed is used to wait for the build method to complete.
       Future.delayed(Duration.zero, () {
         if (!viewModel.winDialogShown) {
           showWinDialog(context);
@@ -42,7 +41,7 @@ class TableView extends StackedView<TableViewModel> {
                       crossAxisCount: 5,
                     ),
                     itemBuilder: (context, index) {
-                      int col = index ~/ 5; // Row index
+                      int col = index ~/ 5;
                       int row = index % 5;
                       final isCenterCell = row == 2 && col == 2;
                       final isSelected = viewModel.selectedCells[row][col];
@@ -84,30 +83,30 @@ class TableView extends StackedView<TableViewModel> {
                   )),
             ])),
         Positioned(
-          bottom: -5, // Positioned on the left
-          right: -10, // Positioned on the top
+          bottom: -5,
+          right: -10,
           child: Image.asset(
-            'assets/6.png', // Path to your image in the assets folder
-            width: 60, // Set width of the image
-            height: 60, // Set height of the image
+            'assets/6.png',
+            width: 60,
+            height: 60,
           ),
         ),
         Positioned(
-          top: -5, // Positioned on the left
-          left: 1, // Positioned on the top
+          top: -5,
+          left: 1,
           child: Image.asset(
-            'assets/3.png', // Path to your image in the assets folder
-            width: 60, // Set width of the image
-            height: 60, // Set height of the image
+            'assets/3.png',
+            width: 60,
+            height: 60,
           ),
         ),
         Positioned(
-          bottom: -5, // Positioned on the left
-          left: -10, // Positioned on the top
+          bottom: -5,
+          left: -10,
           child: Image.asset(
-            'assets/5.png', // Path to your image in the assets folder
-            width: 60, // Set width of the image
-            height: 60, // Set height of the image
+            'assets/5.png',
+            width: 60,
+            height: 60,
           ),
         ),
       ],

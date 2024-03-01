@@ -1,9 +1,9 @@
+import 'package:bingo_yellow/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 //import 'package:bingo_yellow/ui/views/home/home_viewmodel.dart';
 import 'info_alert_dialog_model.dart';
-
 
 class InfoAlertDialog extends StatelessWidget {
   final DialogRequest request;
@@ -56,11 +56,17 @@ class InfoAlertDialog extends StatelessWidget {
                   });
                 },
               ),
-              MaterialButton(
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 onPressed: () {
                   viewModel.navigateToBingo();
                 },
-                child: const Text('Generate'),
+                child: Text(
+                  'Generate',
+                  style: bingoTheme.textTheme.displaySmall,
+                ),
               ),
             ],
           );

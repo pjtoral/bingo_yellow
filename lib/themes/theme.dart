@@ -34,14 +34,14 @@ Color getColorForLetter(int index) {
 
 ElevatedButtonThemeData elevateBTN = ElevatedButtonThemeData(
   style: ButtonStyle(
-    shadowColor:
-        MaterialStateProperty.all<Color>(Colors.blue), // Example shadow color
+    shadowColor: MaterialStateProperty.all<Color>(
+        const Color.fromARGB(255, 0, 0, 0)), // Example shadow color
     textStyle: MaterialStateProperty.all<TextStyle>(
-        TextStyle(fontSize: 16)), // Example text style
+        const TextStyle(fontSize: 16)), // Example text style
     backgroundColor: MaterialStateProperty.all<Color>(
-        Color.fromARGB(255, 67, 154, 70)), // Example background color
+        const Color.fromARGB(255, 67, 154, 70)), // Example background color
     padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-        EdgeInsets.all(16)), // Example padding
+        const EdgeInsets.all(16)), // Example padding
     // Add other properties as needed
   ),
 );
