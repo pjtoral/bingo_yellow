@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 ThemeData bingoTheme = ThemeData(
   textTheme: title,
 );
-
 Color getColorForLetter(int index) {
   switch (index) {
     case 0:
@@ -21,7 +19,7 @@ Color getColorForLetter(int index) {
       return Colors.black;
   }
 }
-
+//Text Theme
 TextTheme title = TextTheme(
   displayLarge: TextStyle(
     fontSize: 50,
