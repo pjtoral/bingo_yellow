@@ -1,4 +1,6 @@
+import 'package:bingo_yellow/app/app.router.dart';
 import 'package:bingo_yellow/themes/theme.dart';
+import 'package:bingo_yellow/ui/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'table_viewmodel.dart';
@@ -120,7 +122,8 @@ class TableView extends StackedView<TableViewModel> {
           content: const Text('You win a million dollars!'),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Navigator.of(context)
+                  .popUntil((route) => route.settings.name == Routes.homeView),
               child: const Text('OK'),
             ),
           ],
