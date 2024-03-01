@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:bingo_yellow/themes/theme.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'bingo_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/table_view.dart';
@@ -21,17 +18,13 @@ class BingoView extends StackedView<BingoViewModel> {
           icon: const Icon(Icons.arrow_back),
           onPressed: viewModel.navigateToHome,
         ),
-        title: const Text('Bingo Card'),
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/7.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
+        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+        child: Center(
           child: Column(
+
             children: [
               SizedBox(
                 height: 30,
@@ -120,26 +113,42 @@ class BingoView extends StackedView<BingoViewModel> {
                               'assets/1.png', // Path to your image in the assets folder
                               width: 100, // Set width of the image
                               height: 100, // Set height of the image
-                            ),
                           ),
-                          Positioned(
-                            bottom: -5, // Positioned on the left
-                            right: -25, // Positioned on the top
-                            child: Image.asset(
-                              'assets/2.png', // Path to your image in the assets folder
-                              width: 100, // Set width of the image
-                              height: 100, // Set height of the image
-                            ),
-                          ),
-                        ],
-                      ),
-                      const TableView(),
-                    ],
+                          child: const Padding(
+                              padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
+                              child: Text(
+                                'BINGO',
+                                style: TextStyle(fontSize: 50),
+                              )),
+                        ),
+                      ],
+                    )
+                  ]),
+                  Positioned(
+                    left: -20, // Positioned on the left
+                    top: -15, // Positioned on the top
+                    child: Image.asset(
+                      'assets/1.png', // Path to your image in the assets folder
+                      width: 100, // Set width of the image
+                      height: 100, // Set height of the image
+                    ),
                   ),
-                ),
+                  Positioned(
+                    bottom: -5, // Positioned on the left
+                    right: -25, // Positioned on the top
+                    child: Image.asset(
+                      'assets/2.png', // Path to your image in the assets folder
+                      width: 100, // Set width of the image
+                      height: 100, // Set height of the image
+                    ),
+                  ),
+                ],
               ),
+              const TableView(),
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 
