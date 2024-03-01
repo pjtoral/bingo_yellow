@@ -11,6 +11,4 @@ class InfoAlertDialogModel extends BaseViewModel {
   Future<void> navigateToBingo() async {
     await _navigationService.navigateToBingoView();
   }
-
- 
 }
