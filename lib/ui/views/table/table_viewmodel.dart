@@ -4,14 +4,12 @@ import 'package:stacked/stacked.dart';
 class TableViewModel extends BaseViewModel {
   late List<List<int>> tableNumbers;
   late List<List<bool>> selectedCells;
-  static late String?
-      selectedCategory; // Added a property to store the selected category
+  static String? selectedCategory;
   bool winDialogShown = false;
 
   TableViewModel() {
     _initializeTable();
   }
-
   void _initializeTable() {
     tableNumbers = List.generate(5, (_) => List.filled(5, 0));
     selectedCells = List.generate(5, (_) => List.filled(5, false));
@@ -21,7 +19,6 @@ class TableViewModel extends BaseViewModel {
         _generateRandomNumbers(31, 45, 4); // Adjusted for the free space
     final List<int> fourthColumnNumbers = _generateRandomNumbers(46, 60, 5);
     final List<int> fifthColumnNumbers = _generateRandomNumbers(61, 75, 5);
-
     for (int i = 0; i < 5; i++) {
       tableNumbers[i][0] = firstColumnNumbers[i];
       tableNumbers[i][1] = secondColumnNumbers[i];
@@ -55,19 +52,19 @@ class TableViewModel extends BaseViewModel {
     switch (selectedCategory) {
       case 'Black out':
         return blackoutWinCondition();
-
       case 'X':
-         return xWinCondition();
+        return xWinCondition();
       case 'Cross':
-       return crossWinCondition();
+        return crossWinCondition();
       case 'L':
         return lWinCondition();
       case 'Corners':
         return cornerWinCondition();
-      case 'Line Vertical':
-       return verticalWinCondition();
       case 'Line Horizontal':
-        return horizontalWinCondition();
+        return lineHorizontal();
+      case 'Line Vertical':
+        // Handle Line Horizontal category logic
+        return lineVertical();
       default:
         // Handle default case (if needed)
         break;
@@ -94,8 +91,6 @@ class TableViewModel extends BaseViewModel {
     return true;
   }
 
-  
-  
   bool crossWinCondition() {
     if (selectedCells[0][2] &&
         selectedCells[1][2] &&
@@ -159,6 +154,68 @@ class TableViewModel extends BaseViewModel {
     return false;
   }
 
+  bool lineHorizontal() {
+    if ((selectedCells[0][0] &&
+            selectedCells[1][0] &&
+            selectedCells[2][0] &&
+            selectedCells[3][0] &&
+            selectedCells[4][0]) ||
+        (selectedCells[0][1] &&
+            selectedCells[1][1] &&
+            selectedCells[2][1] &&
+            selectedCells[3][1] &&
+            selectedCells[4][1]) ||
+        (selectedCells[0][2] &&
+            selectedCells[1][2] &&
+            selectedCells[3][2] &&
+            selectedCells[4][2]) ||
+        (selectedCells[0][3] &&
+            selectedCells[1][3] &&
+            selectedCells[2][3] &&
+            selectedCells[3][3] &&
+            selectedCells[4][3]) ||
+        (selectedCells[0][4] &&
+            selectedCells[1][4] &&
+            selectedCells[2][4] &&
+            selectedCells[3][4] &&
+            selectedCells[4][4])) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool lineVertical() {
+    if ((selectedCells[0][0] &&
+            selectedCells[0][1] &&
+            selectedCells[0][2] &&
+            selectedCells[0][3] &&
+            selectedCells[0][4]) ||
+        (selectedCells[1][0] &&
+            selectedCells[1][1] &&
+            selectedCells[1][2] &&
+            selectedCells[1][3] &&
+            selectedCells[1][4]) ||
+        (selectedCells[2][0] &&
+            selectedCells[2][1] &&
+            selectedCells[2][3] &&
+            selectedCells[2][4]) ||
+        (selectedCells[3][0] &&
+            selectedCells[3][1] &&
+            selectedCells[3][2] &&
+            selectedCells[3][3] &&
+            selectedCells[3][4]) ||
+        (selectedCells[4][0] &&
+            selectedCells[4][1] &&
+            selectedCells[4][2] &&
+            selectedCells[4][3] &&
+            selectedCells[4][4])) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   bool cornerWinCondition() {
     if (selectedCells[0][0] &&
         selectedCells[1][0] &&
@@ -190,54 +247,17 @@ class TableViewModel extends BaseViewModel {
   bool xWinCondition() {
     // Check if the selected cells form an 'X' pattern including the center cell
     if (selectedCells[0][0] &&
-            selectedCells[1][1] &&
-            selectedCells[2][2] &&
-            selectedCells[3][3] &&
-            selectedCells[4][4] ||
+        selectedCells[1][1] &&
+        selectedCells[3][3] &&
+        selectedCells[4][4] &&
         selectedCells[0][4] &&
-            selectedCells[1][3] &&
-            selectedCells[3][1] &&
-            selectedCells[4][0]) {
+        selectedCells[1][3] &&
+        selectedCells[3][1] &&
+        selectedCells[4][0]) {
       return true;
     }
     return false;
   }
-
-  bool horizontalWinCondition() {
-    for (int j = 0; j < 5; j++) {
-      bool verticalWin = true;
-      for (int i = 0; i < 5; i++) {
-        if (i != 2 || j != 2) {
-          if (!selectedCells[i][j]) {
-            verticalWin = false;
-            break;
-          }
-        }
-      }
-      if (verticalWin) {
-        return true;
-      }
-    }
-    return false; // No win condition found
-  }
-
-
-bool verticalWinCondition() {
-  for (int j = 0; j < 5; j++) {
-    bool verticalWin = true;
-    for (int i = 0; i < 5; i++) {
-      // Directly consider the center cell as selected without checking it
-      if (!(i == 2 && j == 2) && !selectedCells[i][j]) {
-        verticalWin = false;
-        break;
-      }
-    }
-    if (verticalWin) {
-      return true;
-    }
-  }
-  return false; // No win condition found
-}
 
   void resetWinDialogShown() {
     winDialogShown = false;
