@@ -24,9 +24,8 @@ class HomeViewModel extends BaseViewModel {
     );
   }
 
-
-
   navigateToBingo() async {
     await _navigationService.navigateToBingoView();
   }
+  
 }
