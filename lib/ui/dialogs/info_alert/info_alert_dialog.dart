@@ -1,4 +1,5 @@
 import 'package:bingo_yellow/themes/theme.dart';
+import 'package:bingo_yellow/themes/theme.dart';
 import 'package:bingo_yellow/ui/views/table/table_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/winningcobination.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class InfoAlertDialog extends StatelessWidget {
       builder: (context, viewModel, child) => _buildDialog(context, viewModel),
     );
   }
+
   Widget _buildDialog(BuildContext context, InfoAlertDialogModel viewModel) {
     String? selectedCategory;
     return AlertDialog(
