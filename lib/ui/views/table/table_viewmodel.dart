@@ -57,19 +57,17 @@ class TableViewModel extends BaseViewModel {
         return blackoutWinCondition();
 
       case 'X':
-        // Handle X category logic
-        break;
+         return xWinCondition();
       case 'Cross':
-        return xWinCondition();
+       return crossWinCondition();
       case 'L':
         return lWinCondition();
       case 'Corners':
         return cornerWinCondition();
       case 'Line Vertical':
-        break;
+       return verticalWinCondition();
       case 'Line Horizontal':
-        // Handle Line Horizontal category logic
-        break;
+        return horizontalWinCondition();
       default:
         // Handle default case (if needed)
         break;
@@ -81,8 +79,6 @@ class TableViewModel extends BaseViewModel {
   bool checkWinCondition() {
     return handleCategorySelection();
   }
-
- 
 
   bool blackoutWinCondition() {
     // Check if all non-free cells are selected
@@ -98,7 +94,9 @@ class TableViewModel extends BaseViewModel {
     return true;
   }
 
-   bool crossWinCondition() {
+  
+  
+  bool crossWinCondition() {
     if (selectedCells[0][2] &&
         selectedCells[1][2] &&
         selectedCells[2][0] &&
@@ -205,7 +203,41 @@ class TableViewModel extends BaseViewModel {
     return false;
   }
 
-  
+  bool horizontalWinCondition() {
+    for (int j = 0; j < 5; j++) {
+      bool verticalWin = true;
+      for (int i = 0; i < 5; i++) {
+        if (i != 2 || j != 2) {
+          if (!selectedCells[i][j]) {
+            verticalWin = false;
+            break;
+          }
+        }
+      }
+      if (verticalWin) {
+        return true;
+      }
+    }
+    return false; // No win condition found
+  }
+
+
+bool verticalWinCondition() {
+  for (int j = 0; j < 5; j++) {
+    bool verticalWin = true;
+    for (int i = 0; i < 5; i++) {
+      // Directly consider the center cell as selected without checking it
+      if (!(i == 2 && j == 2) && !selectedCells[i][j]) {
+        verticalWin = false;
+        break;
+      }
+    }
+    if (verticalWin) {
+      return true;
+    }
+  }
+  return false; // No win condition found
+}
 
   void resetWinDialogShown() {
     winDialogShown = false;
