@@ -19,7 +19,7 @@ class HomeView extends StatelessWidget {
               children: [
                 SizedBox(height: 100),
                 Image.asset(
-                  key: Key('asset8'),
+                  key: const Key('asset8'),
                   'assets/8_jpg.png', // Path to your image in the assets folder
                   width: 300, // Set width of the image
                   height: 300, // Set height of the image

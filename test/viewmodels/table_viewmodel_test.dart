@@ -293,4 +293,63 @@ void main() {
       expect(viewModel.winDialogShown, false);
     });
   });
+
+  test('handleCategorySelection should return true for valid win conditions',
+      () {
+    // Create an instance of the class containing the functions to be tested
+    // Replace 'YourClassName' with the actual name of the class containing the functions
+    TableViewModel viewModel = TableViewModel();
+    // Set selected cells to represent a valid win condition for each category
+    viewModel.selectedCells = [
+      [true, true, true, true, true],
+      [true, true, true, true, true],
+      [true, true, true, true, true],
+      [true, true, true, true, true],
+      [true, true, true, true, true],
+    ];
+    // Test each category's win condition
+    TableViewModel.selectedCategory = 'Black out';
+    expect(viewModel.handleCategorySelection(), true);
+    TableViewModel.selectedCategory = 'X';
+    expect(viewModel.handleCategorySelection(), true);
+    TableViewModel.selectedCategory = 'Cross';
+    expect(viewModel.handleCategorySelection(), true);
+    TableViewModel.selectedCategory = 'L';
+    expect(viewModel.handleCategorySelection(), true);
+    TableViewModel.selectedCategory = 'Corners';
+    expect(viewModel.handleCategorySelection(), true);
+    TableViewModel.selectedCategory = 'Line Horizontal';
+    expect(viewModel.handleCategorySelection(), true);
+    TableViewModel.selectedCategory = 'Line Vertical';
+    expect(viewModel.handleCategorySelection(), true);
+  });
+  test('handleCategorySelection should return false for invalid win conditions',
+      () {
+    // Create an instance of the class containing the functions to be tested
+    // Replace 'YourClassName' with the actual name of the class containing the functions
+    TableViewModel viewModel = TableViewModel();
+    // Set selected cells to represent invalid win conditions for each category
+    viewModel.selectedCells = [
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+    ];
+    // Test each category's win condition
+    TableViewModel.selectedCategory = 'Black out';
+    expect(viewModel.handleCategorySelection(), false);
+    TableViewModel.selectedCategory = 'X';
+    expect(viewModel.handleCategorySelection(), false);
+    TableViewModel.selectedCategory = 'Cross';
+    expect(viewModel.handleCategorySelection(), false);
+    TableViewModel.selectedCategory = 'L';
+    expect(viewModel.handleCategorySelection(), false);
+    TableViewModel.selectedCategory = 'Corners';
+    expect(viewModel.handleCategorySelection(), false);
+    TableViewModel.selectedCategory = 'Line Horizontal';
+    expect(viewModel.handleCategorySelection(), false);
+    TableViewModel.selectedCategory = 'Line Vertical';
+    expect(viewModel.handleCategorySelection(), false);
+  });
 }
