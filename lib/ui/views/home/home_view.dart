@@ -1,8 +1,6 @@
 import 'package:bingo_yellow/themes/theme.dart';
-//import 'package:bingo_yellow/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
 import 'home_viewmodel.dart';
 
 class HomeView extends StatelessWidget {
