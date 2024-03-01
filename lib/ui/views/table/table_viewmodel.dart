@@ -54,25 +54,20 @@ class TableViewModel extends BaseViewModel {
         return blackoutWinCondition();
 
       case 'X':
-        // Handle X category logic
-        break;
-      case 'Cross':
         return xWinCondition();
+
+      case 'Cross':
+        return crossWinCondition();
+
       case 'L':
         return lWinCondition();
+
       case 'Corners':
         return cornerWinCondition();
-      case 'Line Vertical':
-        break;
-      case 'Line Horizontal':
-        // Handle Line Horizontal category logic
-        break;
-      default:
-        // Handle default case (if needed)
-        break;
-    }
 
-    return false; // Default return value
+      default:
+        return false; // Default case should return false
+    }
   }
 
   bool checkWinCondition() {
@@ -187,14 +182,13 @@ class TableViewModel extends BaseViewModel {
   bool xWinCondition() {
     // Check if the selected cells form an 'X' pattern including the center cell
     if (selectedCells[0][0] &&
-            selectedCells[1][1] &&
-            selectedCells[2][2] &&
-            selectedCells[3][3] &&
-            selectedCells[4][4] ||
+        selectedCells[1][1] &&
+        selectedCells[3][3] &&
+        selectedCells[4][4] &&
         selectedCells[0][4] &&
-            selectedCells[1][3] &&
-            selectedCells[3][1] &&
-            selectedCells[4][0]) {
+        selectedCells[1][3] &&
+        selectedCells[3][1] &&
+        selectedCells[4][0]) {
       return true;
     }
     return false;
