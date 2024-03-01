@@ -10,7 +10,7 @@ import 'app.locator.dart';
 import '../ui/dialogs/info_alert/info_alert_dialog.dart';
 
 enum DialogType {
-  infoAlert, custom,
+  infoAlert,
 }
 
 void setupDialogUi() {
