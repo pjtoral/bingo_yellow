@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 ThemeData bingoTheme = ThemeData(
   textTheme: title,
   buttonTheme: buttons,
@@ -18,6 +19,14 @@ Color getColorForLetter(int index) {
       return Colors.orange;
     case 4:
       return Colors.purple;
+    case 5:
+      return Colors.green;
+    case 6:
+      return Colors.indigo;
+    case 7:
+      return Color.fromARGB(255, 255, 195, 56);
+    case 8:
+      return Colors.greenAccent;
     case 5:
       return Colors.green;
     case 6:
