@@ -1,3 +1,4 @@
+import 'package:bingo_yellow/themes/theme.dart';
 import 'package:bingo_yellow/ui/views/table/winningcobination.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -56,13 +57,15 @@ class InfoAlertDialog extends StatelessWidget {
                     });
                   },
                 ),
-              MaterialButton(
-  onPressed: () {
-    WinningCombination winningCombination = WinningCombination();
-    winningCombination.handleCategorySelection(selectedCategory);
-  },
-  child: const Text('Generate'),
-),
+              const SizedBox(height: 8.0),
+              ElevatedButton(
+              onPressed: () {
+                WinningCombination winningCombination = WinningCombination();
+                winningCombination.handleCategorySelection(selectedCategory);
+              },
+              child: Text('Generate',
+                            style: bingoTheme.textTheme.displaySmall),
+            ),
               ],
             );
           },

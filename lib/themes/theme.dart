@@ -24,7 +24,7 @@ Color getColorForLetter(int index) {
     case 6:
       return Colors.indigo;
     case 7:
-      return Color.fromARGB(255, 255, 195, 56);
+      return const Color.fromARGB(255, 255, 195, 56);
     case 8:
       return Colors.greenAccent;
     default:
@@ -37,16 +37,16 @@ ElevatedButtonThemeData elevateBTN = ElevatedButtonThemeData(
     shadowColor:
         MaterialStateProperty.all<Color>(Colors.blue), // Example shadow color
     textStyle: MaterialStateProperty.all<TextStyle>(
-        TextStyle(fontSize: 16)), // Example text style
+        const TextStyle(fontSize: 16)), // Example text style
     backgroundColor: MaterialStateProperty.all<Color>(
-        Color.fromARGB(255, 67, 154, 70)), // Example background color
+        const Color.fromARGB(255, 67, 154, 70)), // Example background color
     padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-        EdgeInsets.all(16)), // Example padding
+        const EdgeInsets.all(16)), // Example padding
     // Add other properties as needed
   ),
 );
 mixin value {}
-ButtonThemeData buttons = ButtonThemeData();
+ButtonThemeData buttons = const ButtonThemeData();
 
 //Text Theme
 TextTheme title = TextTheme(
@@ -69,7 +69,7 @@ TextTheme title = TextTheme(
     fontWeight: FontWeight.bold,
     fontFamily:
         'Lato', // Replace 'YourFunFont' with the name of your desired font
-    color: Color(0xFFFF6A48), // Red color
+    color: const Color(0xFFFF6A48), // Red color
     shadows: [
       Shadow(
         color: Colors.black.withOpacity(1), // Shadow color
@@ -83,7 +83,7 @@ TextTheme title = TextTheme(
     fontWeight: FontWeight.bold,
     fontFamily:
         'Lato', // Replace 'YourFunFont' with the name of your desired font
-    color: Color.fromARGB(255, 246, 246, 246), // Red color
+    color: const Color.fromARGB(255, 246, 246, 246), // Red color
     shadows: [
       Shadow(
         color: Colors.black.withOpacity(1), // Shadow color

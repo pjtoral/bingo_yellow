@@ -1,10 +1,7 @@
 import 'package:bingo_yellow/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-<<<<<<< HEAD
-=======
-import 'package:bingo_yellow/themes/theme.dart';
->>>>>>> origin/tile_edits
+//import 'package:bingo_yellow/themes/theme.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StatelessWidget {
@@ -20,13 +17,13 @@ class HomeView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(height: 100),
+                const SizedBox(height: 100),
                 Image.asset(
                   'assets/8.gif', // Path to your image in the assets folder
                   width: 300, // Set width of the image
                   height: 300, // Set height of the image
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 RichText(
                   text: TextSpan(
                     children: [
@@ -50,7 +47,7 @@ class HomeView extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+               const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
