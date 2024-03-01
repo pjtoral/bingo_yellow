@@ -1,59 +1,135 @@
+import 'package:bingo_yellow/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
 import 'table_viewmodel.dart';
 
 class TableView extends StackedView<TableViewModel> {
   const TableView({Key? key}) : super(key: key);
-
   @override
   Widget builder(
     BuildContext context,
     TableViewModel viewModel,
     Widget? child,
   ) {
-    return Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 2),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: GridView.builder(
-          shrinkWrap: true,
-          itemCount: 25,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 5,
-          ),
-          itemBuilder: (context, index) {
-            int j = index ~/ 5; // Row index
-            int i = index % 5;
-            if (index == 12) {
-              return SizedBox(
-                child: Center(
-                  child: Image.asset(
-                    'assets/4.png',
-                  ),
-                ),
-              );
-            }
-            return SizedBox(
-                child: Padding(
-              padding: const EdgeInsets.all(9),
-              child: Container(
-                decoration: BoxDecoration(
+    if (viewModel.checkWinCondition() && !viewModel.winDialogShown) {
+      // Future.delayed is used to wait for the build method to complete.
+      Future.delayed(Duration.zero, () {
+        if (!viewModel.winDialogShown) {
+          showWinDialog(context);
+          viewModel.winDialogShown = true;
+        }
+      });
+    }
+
+    return Stack(
+      children: [
+        Padding(
+            padding: const EdgeInsets.all(20),
+            child: Stack(children: [
+              Container(
+                  decoration: BoxDecoration(
                     border: Border.all(color: Colors.black, width: 2),
-                    borderRadius: BorderRadius.circular(10.0)),
-                child: Center(
-                  child: Text('${viewModel.numbers[i][j]}'),
-                ),
-              ),
-            ));
-          },
-        ));
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.white,
+                  ),
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: 25,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5,
+                    ),
+                    itemBuilder: (context, index) {
+                      int col = index ~/ 5; // Row index
+                      int row = index % 5;
+                      final isCenterCell = row == 2 && col == 2;
+                      final isSelected = viewModel.selectedCells[row][col];
+                      if (index == 12) {
+                        return SizedBox(
+                          child: Center(
+                            child: Image.asset(
+                              'assets/4.png',
+                            ),
+                          ),
+                        );
+                      }
+                      return InkWell(
+                          onTap: isCenterCell
+                              ? null
+                              : () => viewModel.toggleCellSelection(row, col),
+                          child: Padding(
+                            padding: const EdgeInsets.all(3),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 2),
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: isCenterCell
+                                    ? Colors.grey[300]
+                                    : isSelected
+                                        ? Color(0xFFFFE000)
+                                        : Colors.white,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '${viewModel.tableNumbers[row][col]}',
+                                  style: bingoTheme.textTheme.displayMedium,
+                                ),
+                              ),
+                            ),
+                          ));
+                    },
+                  )),
+            ])),
+        Positioned(
+          bottom: -5, // Positioned on the left
+          right: -10, // Positioned on the top
+          child: Image.asset(
+            'assets/6.png', // Path to your image in the assets folder
+            width: 60, // Set width of the image
+            height: 60, // Set height of the image
+          ),
+        ),
+        Positioned(
+          top: -5, // Positioned on the left
+          left: 1, // Positioned on the top
+          child: Image.asset(
+            'assets/3.png', // Path to your image in the assets folder
+            width: 60, // Set width of the image
+            height: 60, // Set height of the image
+          ),
+        ),
+        Positioned(
+          bottom: -5, // Positioned on the left
+          left: -10, // Positioned on the top
+          child: Image.asset(
+            'assets/5.png', // Path to your image in the assets folder
+            width: 60, // Set width of the image
+            height: 60, // Set height of the image
+          ),
+        ),
+      ],
+    );
+  }
+
+  void showWinDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Congratulations!'),
+          content: const Text('You win a million dollars!'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
-  TableViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      TableViewModel();
+  TableViewModel viewModelBuilder(BuildContext context) => TableViewModel();
 }
