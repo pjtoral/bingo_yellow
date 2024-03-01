@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 ThemeData bingoTheme = ThemeData(
   textTheme: title,
 );
-
 Color getColorForLetter(int index) {
   switch (index) {
     case 0:
