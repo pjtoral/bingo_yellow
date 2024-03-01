@@ -27,6 +27,14 @@ Color getColorForLetter(int index) {
       return Color.fromARGB(255, 255, 195, 56);
     case 8:
       return Colors.greenAccent;
+    case 5:
+      return Colors.green;
+    case 6:
+      return Colors.indigo;
+    case 7:
+      return Color.fromARGB(255, 255, 195, 56);
+    case 8:
+      return Colors.greenAccent;
     default:
       return Colors.black;
   }

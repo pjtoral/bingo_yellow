@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'bingo_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/table_view.dart';
-
 class BingoView extends StackedView<BingoViewModel> {
   const BingoView({Key? key}) : super(key: key);
   @override
@@ -155,7 +154,6 @@ class BingoView extends StackedView<BingoViewModel> {
           )),
     );
   }
-
   @override
   BingoViewModel viewModelBuilder(
     BuildContext context,

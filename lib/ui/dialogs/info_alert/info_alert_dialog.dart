@@ -1,4 +1,5 @@
 import 'package:bingo_yellow/themes/theme.dart';
+import 'package:bingo_yellow/themes/theme.dart';
 import 'package:bingo_yellow/ui/views/table/table_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/winningcobination.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +10,11 @@ import 'info_alert_dialog_model.dart';
 class InfoAlertDialog extends StatelessWidget {
   final DialogRequest request;
   final Function(DialogResponse) completer;
-
   const InfoAlertDialog({
     Key? key,
     required this.request,
     required this.completer,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<InfoAlertDialogModel>.reactive(
