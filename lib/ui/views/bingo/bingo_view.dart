@@ -3,6 +3,7 @@ import 'package:bingo_yellow/themes/theme.dart';
 import 'package:stacked/stacked.dart';
 import 'bingo_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/table_view.dart';
+
 class BingoView extends StackedView<BingoViewModel> {
   const BingoView({Key? key}) : super(key: key);
   @override
@@ -42,7 +43,7 @@ class BingoView extends StackedView<BingoViewModel> {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                               const  SizedBox(
+                                const SizedBox(
                                   height: 150,
                                 ),
                                 Column(
@@ -138,6 +139,7 @@ class BingoView extends StackedView<BingoViewModel> {
           )),
     );
   }
+
   @override
   BingoViewModel viewModelBuilder(
     BuildContext context,
