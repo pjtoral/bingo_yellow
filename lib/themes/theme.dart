@@ -44,7 +44,7 @@ TextTheme title = TextTheme(
     shadows: [
       Shadow(
         color: Colors.black.withOpacity(0.5), // Shadow color
-        offset: Offset(2, 2), // Shadow offset
+        offset: const Offset(2, 2), // Shadow offset
         blurRadius: 4, // Shadow blur radius
       ),
     ],
