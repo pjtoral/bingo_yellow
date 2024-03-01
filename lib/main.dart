@@ -11,7 +11,8 @@ Future<void> main() async {
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();
-  runApp(const MainApp());
+  runApp(const MainApp(),
+  );
 }
 
 class MainApp extends StatelessWidget {

@@ -1,7 +1,5 @@
 import 'package:bingo_yellow/themes/theme.dart';
-import 'package:bingo_yellow/themes/theme.dart';
 import 'package:bingo_yellow/ui/views/table/table_viewmodel.dart';
-import 'package:bingo_yellow/ui/views/table/winningcobination.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';

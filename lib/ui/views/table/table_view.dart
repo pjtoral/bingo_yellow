@@ -1,4 +1,5 @@
 import 'package:bingo_yellow/themes/theme.dart';
+import 'package:bingo_yellow/ui/views/table/windialog.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'table_viewmodel.dart';
@@ -14,7 +15,7 @@ class TableView extends StackedView<TableViewModel> {
     if (viewModel.checkWinCondition() && !viewModel.winDialogShown) {
       Future.delayed(Duration.zero, () {
         if (!viewModel.winDialogShown) {
-          showWinDialog(context);
+          Windialog.showWinDialog(context);
           viewModel.winDialogShown = true;
         }
       });
@@ -108,24 +109,6 @@ class TableView extends StackedView<TableViewModel> {
           ),
         ),
       ],
-    );
-  }
-
-  void showWinDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Congratulations!'),
-          content: const Text('You win a million dollars!'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
     );
   }
 
