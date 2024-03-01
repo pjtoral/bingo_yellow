@@ -1,3 +1,4 @@
+import 'package:bingo_yellow/ui/views/table/table_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/winningcobination.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -58,8 +59,8 @@ class InfoAlertDialog extends StatelessWidget {
                 ),
               MaterialButton(
   onPressed: () {
-    WinningCombination winningCombination = WinningCombination();
-    winningCombination.handleCategorySelection(selectedCategory);
+   TableViewModel.selectedCategory = selectedCategory;
+    viewModel.navigateToBingo();
   },
   child: const Text('Generate'),
 ),
