@@ -23,7 +23,7 @@ class BingoView extends StackedView<BingoViewModel> {
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/7.png'),
               fit: BoxFit.cover,
@@ -31,7 +31,7 @@ class BingoView extends StackedView<BingoViewModel> {
           ),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Container(
@@ -44,7 +44,7 @@ class BingoView extends StackedView<BingoViewModel> {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(
+                               const  SizedBox(
                                   height: 150,
                                 ),
                                 Column(
