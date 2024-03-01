@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'bingo_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/table_view.dart';
+
 class BingoView extends StackedView<BingoViewModel> {
   const BingoView({Key? key}) : super(key: key);
   @override
@@ -15,14 +16,16 @@ class BingoView extends StackedView<BingoViewModel> {
   ) {
     return Scaffold(
       appBar: AppBar(
+        key: Key('appBar'),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, key: Key('backHome')),
           onPressed: viewModel.navigateToHome,
         ),
         title: const Text('Bingo Card'),
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Container(
+          key: const Key('background'),
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/7.png'),
@@ -119,7 +122,9 @@ class BingoView extends StackedView<BingoViewModel> {
                               child: Image.asset(
                                 'assets/1.png', // Path to your image in the assets folder
                                 width: 100, // Set width of the image
-                                height: 100, // Set height of the image
+                                height: 100,
+                                key: const Key(
+                                    'asset1'), // Set height of the image
                               ),
                             ),
                             Positioned(
@@ -128,22 +133,13 @@ class BingoView extends StackedView<BingoViewModel> {
                               child: Image.asset(
                                 'assets/2.png', // Path to your image in the assets folder
                                 width: 100, // Set width of the image
-                                height: 100, // Set height of the image
+                                height: 100,
+                                key: const Key(
+                                    'asset2'), // Set height of the image
                               ),
                             ),
                           ],
                         ),
-                        //const SizedBox(height: 20),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        //   children: [
-                        //     Text('B', style: bingoTheme.textTheme.displayLarge),
-                        //     Text('I', style: bingoTheme.textTheme.displayLarge),
-                        //     Text('N', style: bingoTheme.textTheme.displayLarge),
-                        //     Text('G', style: bingoTheme.textTheme.displayLarge),
-                        //     Text('O', style: bingoTheme.textTheme.displayLarge),
-                        //   ],
-                        // ),
                         const TableView(),
                       ],
                     ),
@@ -154,6 +150,7 @@ class BingoView extends StackedView<BingoViewModel> {
           )),
     );
   }
+
   @override
   BingoViewModel viewModelBuilder(
     BuildContext context,

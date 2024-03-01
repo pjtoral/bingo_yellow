@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:bingo_yellow/themes/theme.dart';
 import 'home_viewmodel.dart';
+
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
   @override
@@ -18,6 +19,7 @@ class HomeView extends StatelessWidget {
               children: [
                 SizedBox(height: 100),
                 Image.asset(
+                  key: Key('asset8'),
                   'assets/8_jpg.png', // Path to your image in the assets folder
                   width: 300, // Set width of the image
                   height: 300, // Set height of the image

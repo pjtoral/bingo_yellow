@@ -4,7 +4,8 @@ import 'package:stacked_services/stacked_services.dart';
 
 class BingoViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
-  void navigateToHome() {
+
+  navigateToHome() {
     _navigationService.back();
   }
 }
