@@ -1,3 +1,4 @@
+import 'package:bingo_yellow/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'table_viewmodel.dart';
@@ -66,12 +67,14 @@ class TableView extends StackedView<TableViewModel> {
                                 color: isCenterCell
                                     ? Colors.grey[300]
                                     : isSelected
-                                        ? Colors.lightBlue
+                                        ? Color(0xFFFFE000)
                                         : Colors.white,
                               ),
                               child: Center(
-                                child:
-                                    Text('${viewModel.tableNumbers[row][col]}'),
+                                child: Text(
+                                  '${viewModel.tableNumbers[row][col]}',
+                                  style: bingoTheme.textTheme.displayMedium,
+                                ),
                               ),
                             ),
                           ));
