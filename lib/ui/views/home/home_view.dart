@@ -1,74 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:bingo_yellow/ui/common/app_colors.dart';
-import 'package:bingo_yellow/ui/common/ui_helpers.dart';
 
 import 'home_viewmodel.dart';
 
-class HomeView extends StackedView<HomeViewModel> {
+class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
   @override
-  Widget builder(
-    BuildContext context,
-    HomeViewModel viewModel,
-    Widget? child,
-  ) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+  Widget build(BuildContext context) {
+    return ViewModelBuilder<HomeViewModel>.reactive(
+      viewModelBuilder: () => HomeViewModel(),
+      builder: (context, viewModel, child) => Scaffold(
+        body: SafeArea(
           child: Center(
             child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                verticalSpaceLarge,
-                Column(
-                  children: [
-                    const Text(
-                      'Hello, STACKED!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    verticalSpaceMedium,
-                    MaterialButton(
-                      color: Colors.black,
-                      onPressed: viewModel.navigateToBingo,
-                      child: Text(
-                        viewModel.counterLabel,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
+                const Text('BINGO'),
+                MaterialButton(
+                  onPressed: () {
+                    _showCategoryModal(context, viewModel); // Pass viewModel here
+                  },
+                  child: const Text('Start'),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.showDialog,
-                      child: const Text(
-                        'Show Dialog',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.showBottomSheet,
-                      child: const Text(
-                        'Show Bottom Sheet',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
               ],
             ),
           ),
@@ -77,9 +31,54 @@ class HomeView extends StackedView<HomeViewModel> {
     );
   }
 
-  @override
-  HomeViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      HomeViewModel();
+  void _showCategoryModal(BuildContext context, HomeViewModel viewModel) { // Receive viewModel here
+    String? selectedCategory;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Select Bingo Category'),
+          content: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  DropdownButton<String>(
+                    hint: const Text('Select Bingo Category'),
+                    value: selectedCategory,
+                    items: [
+                      'Black out',
+                      'X',
+                      'Cross',
+                      'L',
+                      'Corners',
+                      'Line Vertical',
+                      'Line Horizontal',
+                    ].map((String category) {
+                      return DropdownMenuItem<String>(
+                        value: category,
+                        child: Text(category),
+                      );
+                    }).toList(),
+                    onChanged: (String? category) {
+                      setState(() {
+                        selectedCategory = category;
+                      });
+                    },
+                  ),
+                  MaterialButton(
+                    onPressed: () {
+                      viewModel.navigateToBingo();
+                    },
+                    child: const Text('Generate'),
+                  ),
+                ],
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
 }
