@@ -61,6 +61,7 @@ bool checkWinCondition() {
     if (columnWin) return true;
   }
 
+  // Check if all cells in any row are selected
   for (int row = 0; row < 5; row++) {
     bool rowWin = true;
     for (int col = 0; col < 5; col++) {
@@ -72,20 +73,55 @@ bool checkWinCondition() {
     if (rowWin) return true;
   }
 
-
+  // Check diagonal from top-left to bottom-right and top-right to bottom-left
   bool diagonalWin1 = true, diagonalWin2 = true;
   for (int i = 0; i < 5; i++) {
-    // Skip the center cell check for diagonalWin1, it's implicitly considered selected
     if (i != 2 && !selectedCells[i][i]) diagonalWin1 = false;
-    if (i != 2 && !selectedCells[i][4 - i]) diagonalWin2 = false; 
+    if (i != 2 && !selectedCells[i][4 - i]) diagonalWin2 = false;
   }
 
-  return diagonalWin1 && diagonalWin2;
+  // Check L shapes in corners
+  bool lShapeTopLeft = checkLShapeTopLeft();
+  bool lShapeTopRight = checkLShapeTopRight();
+  bool lShapeBottomLeft = checkLShapeBottomLeft();
+  bool lShapeBottomRight = checkLShapeBottomRight();
+
+  bool crossWin = selectedCells[0][2] && selectedCells[1][2] && selectedCells[2][0] && selectedCells[2][1] && selectedCells[2][3] && selectedCells[2][4] && selectedCells[3][2] && selectedCells[4][2];
+
+  // Check if corners are selected
+  bool cornerWin = (selectedCells[0][0] && selectedCells[1][0] && selectedCells[0][1] && selectedCells[0][3] && selectedCells[0][4] && selectedCells[1][4] && selectedCells[0][3] && selectedCells[0][4] && selectedCells[4][1] && selectedCells[3][4] && selectedCells[4][3] && selectedCells[4][4]) ||
+                   (selectedCells[1][1] && selectedCells[1][2] && selectedCells[1][3] && selectedCells[2][1] && selectedCells[2][3] && selectedCells[3][1] && selectedCells[3][2] && selectedCells[3][3]);
+
+  // Combine all conditions to determine if there's a win
+  return diagonalWin1 && diagonalWin2 || lShapeTopLeft || lShapeTopRight || lShapeBottomLeft || lShapeBottomRight || crossWin || cornerWin;
 }
+
+bool checkLShapeTopLeft() {
+    return selectedCells[0][0] && selectedCells[1][0] && selectedCells[2][0] && selectedCells[3][0] && selectedCells[4][0] &&
+           selectedCells[4][1] && selectedCells[4][2] && selectedCells[4][3] && selectedCells[4][4];
+}
+
+bool checkLShapeTopRight() {
+    return selectedCells[0][4] && selectedCells[1][4] && selectedCells[2][4] && selectedCells[3][4] && selectedCells[4][4] &&
+           selectedCells[0][0] && selectedCells[0][1] && selectedCells[0][2] && selectedCells[0][3];
+}
+
+bool checkLShapeBottomLeft() {
+    return selectedCells[4][0] && selectedCells[3][0] && selectedCells[2][0] && selectedCells[1][0] && selectedCells[0][0] &&
+           selectedCells[0][1] && selectedCells[0][2] && selectedCells[0][3] && selectedCells[0][4];
+}
+
+bool checkLShapeBottomRight() {
+    return selectedCells[4][4] && selectedCells[3][4] && selectedCells[2][4] && selectedCells[1][4] && selectedCells[0][4] &&
+           selectedCells[4][0] && selectedCells[4][1] && selectedCells[4][2] && selectedCells[4][3];
+}
+
+
 
 
   void resetWinDialogShown(){
     winDialogShown = false;
     notifyListeners();
   }
+
 }
