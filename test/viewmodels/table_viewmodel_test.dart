@@ -47,6 +47,20 @@ void main() {
       expect(viewModel.blackoutWinCondition(), isFalse);
     });
     test(
+        'Given boolean L win condition function, when correct initialization and satisfies the condition, Then correctly identifies a win',
+        () {
+      viewModel.toggleCellSelection(0, 0);
+      viewModel.toggleCellSelection(0, 1);
+      viewModel.toggleCellSelection(0, 2);
+      viewModel.toggleCellSelection(0, 3);
+      viewModel.toggleCellSelection(0, 4);
+      viewModel.toggleCellSelection(1, 4);
+      viewModel.toggleCellSelection(2, 4);
+      viewModel.toggleCellSelection(3, 4);
+      viewModel.toggleCellSelection(4, 4);
+      expect(viewModel.lWinCondition(), isTrue);
+    });
+    test(
         'Given boolean cross win condition function , When initialized correctly and satisfy cross condition, Then identifies a win',
         () {
       viewModel.toggleCellSelection(0, 2);
