@@ -11,7 +11,9 @@ class TableView extends StackedView<TableViewModel> {
     TableViewModel viewModel,
     Widget? child,
   ) {
-    if (viewModel.checkWinCondition() && !viewModel.winDialogShown) {
+    int winConditionType = 1;
+    if (viewModel.checkWinCondition(winConditionType) &&
+        !viewModel.winDialogShown) {
       // Future.delayed is used to wait for the build method to complete.
       Future.delayed(Duration.zero, () {
         if (!viewModel.winDialogShown) {

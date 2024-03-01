@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bingo_yellow/themes/theme.dart';
+import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'bingo_viewmodel.dart';
 import 'package:bingo_yellow/ui/views/table/table_view.dart';
@@ -130,6 +132,17 @@ class BingoView extends StackedView<BingoViewModel> {
                           ),
                         ],
                       ),
+                      //const SizedBox(height: 20),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //   children: [
+                      //     Text('B', style: bingoTheme.textTheme.displayLarge),
+                      //     Text('I', style: bingoTheme.textTheme.displayLarge),
+                      //     Text('N', style: bingoTheme.textTheme.displayLarge),
+                      //     Text('G', style: bingoTheme.textTheme.displayLarge),
+                      //     Text('O', style: bingoTheme.textTheme.displayLarge),
+                      //   ],
+                      // ),
                       const TableView(),
                     ],
                   ),
