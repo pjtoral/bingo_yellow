@@ -52,21 +52,19 @@ class TableViewModel extends BaseViewModel {
     switch (selectedCategory) {
       case 'Black out':
         return blackoutWinCondition();
-
       case 'X':
-        // Handle X category logic
-        break;
-      case 'Cross':
         return xWinCondition();
+      case 'Cross':
+        return crossWinCondition();
       case 'L':
         return lWinCondition();
       case 'Corners':
         return cornerWinCondition();
-      case 'Line Vertical':
-        break;
       case 'Line Horizontal':
+        return lineHorizontal();
+      case 'Line Vertical':
         // Handle Line Horizontal category logic
-        break;
+        return lineVertical();
       default:
         // Handle default case (if needed)
         break;
@@ -154,6 +152,68 @@ class TableViewModel extends BaseViewModel {
       return true;
     }
     return false;
+  }
+
+  bool lineHorizontal() {
+    if ((selectedCells[0][0] &&
+            selectedCells[1][0] &&
+            selectedCells[2][0] &&
+            selectedCells[3][0] &&
+            selectedCells[4][0]) ||
+        (selectedCells[0][1] &&
+            selectedCells[1][1] &&
+            selectedCells[2][1] &&
+            selectedCells[3][1] &&
+            selectedCells[4][1]) ||
+        (selectedCells[0][2] &&
+            selectedCells[1][2] &&
+            selectedCells[3][2] &&
+            selectedCells[4][2]) ||
+        (selectedCells[0][3] &&
+            selectedCells[1][3] &&
+            selectedCells[2][3] &&
+            selectedCells[3][3] &&
+            selectedCells[4][3]) ||
+        (selectedCells[0][4] &&
+            selectedCells[1][4] &&
+            selectedCells[2][4] &&
+            selectedCells[3][4] &&
+            selectedCells[4][4])) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool lineVertical() {
+    if ((selectedCells[0][0] &&
+            selectedCells[0][1] &&
+            selectedCells[0][2] &&
+            selectedCells[0][3] &&
+            selectedCells[0][4]) ||
+        (selectedCells[1][0] &&
+            selectedCells[1][1] &&
+            selectedCells[1][2] &&
+            selectedCells[1][3] &&
+            selectedCells[1][4]) ||
+        (selectedCells[2][0] &&
+            selectedCells[2][1] &&
+            selectedCells[2][3] &&
+            selectedCells[2][4]) ||
+        (selectedCells[3][0] &&
+            selectedCells[3][1] &&
+            selectedCells[3][2] &&
+            selectedCells[3][3] &&
+            selectedCells[3][4]) ||
+        (selectedCells[4][0] &&
+            selectedCells[4][1] &&
+            selectedCells[4][2] &&
+            selectedCells[4][3] &&
+            selectedCells[4][4])) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   bool cornerWinCondition() {

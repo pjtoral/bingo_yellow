@@ -71,7 +71,7 @@ class TableView extends StackedView<TableViewModel> {
                               ),
                               child: Center(
                                 child: Text(
-                                  '${viewModel.tableNumbers[row][col]}',
+                                  '${viewModel.tableNumbers[col][row]}',
                                   style: bingoTheme.textTheme.displayMedium,
                                 ),
                               ),
